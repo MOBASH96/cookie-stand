@@ -1,0 +1,43 @@
+.ribbon {
+  position: relative;
+  top: -80px;
+  right: -1000px;
+}
+header {
+  font-family: "Roboto", sans-serif;
+}
+header p {
+  font-size: 30px;
+}
+main {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 150px;
+}
+.space {
+  background-color: #ff8c69;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  font-size: 25px;
+}
+nav {
+  background-color: #ffd769;
+}
+p {
+  background-color: #ff8c69;
+  padding: 8px;
+  margin: 0px;
+  border: 0px;
+}
+a {
+  margin: 25px;
+}
+footer p {
+  background-color: #ffd769;
+  font-size: 30px;
+  font-family: Arial;
+  text-align: right;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
