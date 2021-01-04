@@ -16,7 +16,7 @@ var Seattle = {
   ruslt2: [],
   ruslt: function () {
     var array = [];
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 17; i++) {
       array[i] = this.CookiPurchased();
     }
     this.ruslt2 = array;
@@ -42,7 +42,7 @@ var Tokyo = {
   ruslt2: [],
   ruslt: function () {
     var array = [];
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 17; i++) {
       array[i] = this.CookiPurchased();
     }
     this.ruslt2 = array;
@@ -68,7 +68,7 @@ var Dubai = {
   ruslt2: [],
   ruslt: function () {
     var array = [];
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 17; i++) {
       array[i] = this.CookiPurchased();
     }
     this.ruslt2 = array;
@@ -94,7 +94,7 @@ var Paris = {
   ruslt2: [],
   ruslt: function () {
     var array = [];
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 17; i++) {
       array[i] = this.CookiPurchased();
     }
     this.ruslt2 = array;
@@ -120,7 +120,7 @@ var Lima = {
   ruslt2: [],
   ruslt: function () {
     var array = [];
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 17; i++) {
       array[i] = this.CookiPurchased();
     }
     this.ruslt2 = array;
