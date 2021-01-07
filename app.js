@@ -1,9 +1,15 @@
 "use strict";
-function Location(min, max, avgCookisperCus) {
+var arrayOverall=[]
+
+function Location(locationName, min, max, avgCookisperCus) {
+  this.locationName= locationName;
   this.min = min;
   this.max = max;
   this.avgCookisperCus = avgCookisperCus;
   this.ruslt = [];
+arrayOverall.push(this)
+// console.log(arrayOverall);
+
 }
 
 Location.prototype.custPerHr = function () {
@@ -20,13 +26,72 @@ Location.prototype.ruslt2 = function () {
   }
   this.ruslt = array;
 };
-
+ 
+/////////////////////
+/////////////////////
 // adding locations list by creating an object
-var seattle = new Location("23", "65", "6.3");
-var Tokyo = new Location("3", "24", "1.2");
-var Dubai = new Location("11", "38", "3.7");
-var Paris = new Location("20", "38", "2.3");
-var Lima = new Location("2", "16", "4.6");
+var seattle = new Location('seattle',"23", "65", "6.3");
+var Tokyo = new Location("Tokyo","3", "24", "1.2");
+var Dubai = new Location("Dubai","11","38","3.7");
+var Paris = new Location("Paris","20", "38", "2.3");
+var Lima = new Location("Lima","2", "16", "4.6");
+/////////////////
+
+var locationForm = document.getElementById('newLocationForm');
+locationForm.addEventListener('submit',newRender);
+
+
+function newRender(event){
+
+
+  alert("form submitted!");
+  event.preventDefault(); 
+  var loName = event.target.locationName.value;
+  var min = event.target.min.value;
+  var max =  event.target.max.value;
+  var avg = event.target.avg.value;
+
+  var newLoc = new Location(loName, min, max, avg)
+  console.log(newLoc);
+  newLoc.ruslt2();
+  // newLocation.ruslt2();
+
+var tableSecondRow = document.createElement("tr");
+table.appendChild(tableSecondRow);
+
+
+var dataCell1 = document.createElement("td");
+dataCell1.textContent = loName;
+
+tableSecondRow.appendChild(dataCell1);
+
+for (var i = 0; i < 14; i++) {
+var dataCell2 = document.createElement("td");
+dataCell2.textContent = newLoc.ruslt[i].toFixed(0);
+tableSecondRow.appendChild(dataCell2);
+}
+var total = 0;
+for (var i = 0; i < 14; i++) {
+total = total + newLoc.ruslt[i];
+}
+var dataCellTotal = document.createElement("td");
+dataCellTotal.textContent = total.toFixed(0);
+tableSecondRow.appendChild(dataCellTotal);
+///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+  // the total row
+  footer();
+
+
+}
+
+
+
+     
+
+
+/////////////////
+
 
 //here i will call the function
 seattle.ruslt2();
@@ -34,15 +99,17 @@ Tokyo.ruslt2();
 Dubai.ruslt2();
 Paris.ruslt2();
 Lima.ruslt2();
+
+// newLocation.ruslt2()
 // here i will cconsol.log the ruslt
-console.log(seattle.ruslt);
-console.log(Tokyo.ruslt);
-console.log(Dubai.ruslt);
-console.log(Paris.ruslt);
-console.log(Lima.ruslt);
-console.log(seattle.max);
-console.log(seattle.min);
-console.log(seattle.avgCookisperCus);
+// console.log(seattle.ruslt);
+// console.log(Tokyo.ruslt);
+// console.log(Dubai.ruslt);
+// console.log(Paris.ruslt);
+// console.log(Lima.ruslt);
+// console.log(seattle.max);
+// console.log(seattle.min);
+// console.log(seattle.avgCookisperCus);
 
 //////////////////////////
 /////////////////////////
@@ -246,46 +313,105 @@ var dataCellTotal = document.createElement("td");
 dataCellTotal.textContent = total.toFixed(0);
 tableSecondRow.appendChild(dataCellTotal);
 
+
+
+
+
 ///////////////////////////////////
 //this is for the footer 
 //////////////////////////////////
 
 
   // the total row
-var tableSecondRow = document.createElement("tr");
-table.appendChild(tableSecondRow);
-
-var dataCell1 = document.createElement("td");
-dataCell1.textContent = "Total";
-tableSecondRow.appendChild(dataCell1);
-
-for (var i = 0; i < 14; i++) {
-  var hoursTotal =
-    seattle.ruslt[i] +
-    Tokyo.ruslt[i] +
-    Dubai.ruslt[i] +
-    Paris.ruslt[i] +
-    Lima.ruslt[i];
-
+  function footer(){
+  var tableSecondRow = document.createElement("tr");
+  table.appendChild(tableSecondRow);
+  
+  var dataCell1 = document.createElement("td");
+  dataCell1.textContent = "Total";
+  tableSecondRow.appendChild(dataCell1);
+  
+  for (var i = 0; i < 14; i++) {
+    var hoursTotal =
+      seattle.ruslt[i] +
+      Tokyo.ruslt[i] +
+      Dubai.ruslt[i] +
+      Paris.ruslt[i] +
+      Lima.ruslt[i];
+  
+    var dataCellTotal = document.createElement("td");
+    dataCellTotal.textContent = hoursTotal.toFixed(0);
+    tableSecondRow.appendChild(dataCellTotal);
+  }
+  
+  //  the td for the total of daily hours  total
+  
+  var total = 0;
+  for (var i = 0; i < 14; i++) {
+    var dailyTotal =
+      seattle.ruslt[i] +
+      Tokyo.ruslt[i] +
+      Dubai.ruslt[i] +
+      Paris.ruslt[i] +
+      Lima.ruslt[i];
+    total = total + dailyTotal;
+  }
+  
   var dataCellTotal = document.createElement("td");
-  dataCellTotal.textContent = hoursTotal.toFixed(0);
+  dataCellTotal.textContent = total.toFixed(0);
   tableSecondRow.appendChild(dataCellTotal);
 }
+footer();
 
-//  the td for the total of daily hours  total
+// var tableSecondRow = document.createElement("tr");
+// table.appendChild(tableSecondRow);
 
-var total = 0;
-for (var i = 0; i < 14; i++) {
-  var dailyTotal =
-    seattle.ruslt[i] +
-    Tokyo.ruslt[i] +
-    Dubai.ruslt[i] +
-    Paris.ruslt[i] +
-    Lima.ruslt[i];
-  total = total + dailyTotal;
-}
+// var total=0;
+// for (var i = 0; i < 14; i++) {
+//   var hoursTotal =seattle.ruslt[i] +Tokyo.ruslt[i] +Dubai.ruslt[i] +Paris.ruslt[i] +Lima.ruslt[i];
+//   // for(var j=0;j<arrayOverall.length;j++){
+//   //   var hoursTotal=arrayOverall[j];
+//   // }
 
-var dataCellTotal = document.createElement("td");
-dataCellTotal.textContent = total.toFixed(0);
-tableSecondRow.appendChild(dataCellTotal);
+//     total=total+hoursTotal ;        
 
+//   var dataCellTotal = document.createElement("td");
+//   dataCellTotal.textContent =total.toFixed(0);
+//   tableSecondRow.appendChild(dataCellTotal);
+// }
+
+// //  the td for the total of daily hours  total
+
+// var total = 0;
+// for (var i = 0; i < 14; i++) {
+//   // var dailyTotal =seattle.ruslt[i] +Tokyo.ruslt[i] +Dubai.ruslt[i] +Paris.ruslt[i] +Lima.ruslt[i];
+//   // for(var j=0;j<arrayOverall.length;j++){
+//   //   var dailyTotal=arrayOverall[j];
+//   // }
+//   total = total + dailyTotal;
+
+// }
+
+// var dataCellTotal = document.createElement("td");
+// dataCellTotal.textContent = total.toFixed(0);
+// tableSecondRow.appendChild(dataCellTotal);
+
+
+
+
+
+
+// var dataCell1 = document.createElement("td");
+// dataCell1.textContent = "Total";
+// tableSecondRow.appendChild(dataCell1);
+//  for (var i = 0; i < 14; i++) {
+
+// var sum=0;
+// for(var i=0;i<arrayOverall.length;i++){
+// sum=sum+arrayOverall[i];
+// // console.log(sum);
+// }
+// var dataCellTotal = document.createElement("td");
+//   dataCellTotal.textContent =sum.toFixed(0);
+//   tableSecondRow.appendChild(dataCellTotal);
+//  }
