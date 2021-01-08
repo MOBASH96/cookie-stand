@@ -41,14 +41,14 @@ var Lima = new Location("Lima", "2", "16", "4.6");
 
 //here i will call the function
 
-// for(var i=0;i<arrayOverall.length;i++){ ////////////////////////////i think here is my problem//////////////
-//   arrayOverall[i].ruslt2();                      ///////////////////im not calling the newloc.ruslt2();///////////////////////
-// }                                                ///////////////////but the function dose not work///////
-seattle.ruslt2();
-Tokyo.ruslt2();
-Dubai.ruslt2();
-Paris.ruslt2();
-Lima.ruslt2();
+for(var i=0;i<arrayOverall.length;i++){ ////////////////////////////i think here is my problem//////////////
+   arrayOverall[i].ruslt2();                      ///////////////////im not calling the newloc.ruslt2();///////////////////////
+}                                                ///////////////////but the function dose not work///////
+// seattle.ruslt2();
+// Tokyo.ruslt2();
+// Dubai.ruslt2();
+// Paris.ruslt2();
+// Lima.ruslt2();
 
 //////////////////////////
 /////////////////////////
@@ -75,10 +75,13 @@ dataFun(); // calling the calculation data inside the table
 //////////////////////////////////////////////////////////////////
 var locationForm = document.getElementById("newLocationForm");
 locationForm.addEventListener("submit", newRender);
-
 function newRender(event) {
   alert("form submitted!");
   event.preventDefault();
+
+//////////////////to delet the last total to add the new location
+  table.deleteRow(-1); // the -1 indecate to the last row in the table 
+
   var loName = event.target.locationName.value;
   var min = event.target.min.value;
   var max = event.target.max.value;
@@ -109,6 +112,13 @@ function newRender(event) {
   var dataCellTotal = document.createElement("td");
   dataCellTotal.textContent = total.toFixed(0);
   tableSecondRow.appendChild(dataCellTotal);
+
+
+// Delete second row
+// table.deleteRow(-1);
+
+
+  footer(); 
 }
 footer(); // calling the calculate the total
 
@@ -289,34 +299,38 @@ function dataFun() {
 
 // the total row
 function footer() {
-  var tableSecondRow = document.createElement("tr");
-  table.appendChild(tableSecondRow);
+  var tableLastRow = document.createElement("tr");
+  table.appendChild(tableLastRow);
 
   var dataCell1 = document.createElement("td");
   dataCell1.textContent = "Total";
-  tableSecondRow.appendChild(dataCell1);
+  tableLastRow.appendChild(dataCell1);
 
   for (var i = 0; i < 14; i++) {
     var hoursTotal = 0;
+    console.log(arrayOverall)
     for (var j = 0; j < arrayOverall.length; j++) {
-      hoursTotal = hoursTotal + arrayOverall[j];
+      // console.log(arrayOverall[j]);
+      hoursTotal = hoursTotal + arrayOverall[j].ruslt[i];
     }
     var dataCellTotal = document.createElement("td");
     dataCellTotal.textContent = hoursTotal.toFixed(0);
-    tableSecondRow.appendChild(dataCellTotal);
+    tableLastRow.appendChild(dataCellTotal);
   }
 
   //  the td for the total of daily hours  total
 
-  var total = 0;
-  for (var i = 0; i < 14; i++) {
-    var dailyTotal = 0;
-    for (var z = 0; z < arrayOverall.length; j++) {
-      dailyTotal = dailyTotal + arrayOverall[i];
-    }
+  // var total = 0;
+  var dailyTotal = 0;
 
-    var dataCellTotal = document.createElement("td");
-    dataCellTotal.textContent = total.toFixed(0);
-    tableSecondRow.appendChild(dataCellTotal);
-  }
+  for (var i = 0; i < 14; i++) {
+  
+ for (var z = 0; z < arrayOverall.length; z++) {
+   dailyTotal = dailyTotal + arrayOverall[z].ruslt[i];
+ }
+    
+}
+var dataCellTotal = document.createElement("td");
+dataCellTotal.textContent = dailyTotal.toFixed(0);
+tableLastRow.appendChild(dataCellTotal);  
 }
